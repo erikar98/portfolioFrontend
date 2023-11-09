@@ -1,0 +1,13 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">    
+        <p-sidebar [(visible)]="sidebarVisible">
+            <h3>Castigo de cartera</h3>
+            <p-panelMenu [model]="items" [style]="{'width':'280px'}" [multiple]="true"></p-panelMenu>
+        </p-sidebar>
+        <p-button (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+    </div>
+    <div class="p-toolbar-group-end">
+        <h3>Seguros Bolivar</h3>
+    </div>
+</p-toolbar>
+
