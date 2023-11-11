@@ -12,20 +12,19 @@ export class MenuComponent {
 
   items: MenuItem[] = [
     {
-      label: 'Clientes',
+      label: 'Cartera de Clientes',
+      icon: 'pi pi-user',
       routerLink: '/customer-search'
     },
     {
-      label: 'Productos',
-      routerLink: '/inicio'
-    },
-    {
-      label: 'Pagos',
-      routerLink: '/inicio'
+      label: 'Historial de Pagos',
+      icon: ' pi pi-dollar',
+      routerLink: '/payment/list-payments'
     },
     {
       label: 'Reportes',
-      routerLink: '/inicio'
+      icon: 'pi pi-chart-bar',
+      routerLink: '/report/list-report'
     }
   ];
 

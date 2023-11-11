@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { CustomerModule } from './components/customer/customer.module';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductModule } from './components/product/product.module';
+import { PaymentModule } from './components/payment/payment.module';
+import { ReportModule } from './components/report/report.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     CustomerModule,
+    ProductModule,
+    PaymentModule,
+    ReportModule,
     LayoutModule,
     BrowserAnimationsModule,
     HttpClientModule

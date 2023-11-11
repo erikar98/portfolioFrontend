@@ -1,0 +1,15 @@
+.updatePortfolio{
+    float: right;
+    margin: 1em;
+}
+.custom-input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    box-shadow: none; /* Elimina el sombreado predeterminado del foco */
+}
+.vertical-line {
+    border-left: 1px solid #ccc; /* Puedes ajustar el color de la línea según tus preferencias */
+    height: 60px; /* Ajusta la altura de la línea según tus necesidades */
+    margin: 0 15px; /* Ajusta el margen para separar la línea de los botones */
+}
