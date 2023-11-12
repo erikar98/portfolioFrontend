@@ -2,14 +2,14 @@
     <p-tabView>
         <p-tabPanel header="Cliente">
             <div class="tab-content">
-                <div class="row">
+                <div class="row" *ngIf="customerTypeTwoArray.length > 0">
 
                     <div class="col">
                         <label for="Tipo documento:">Tipo de documento:</label>
                     </div>
 
                     <div class="col">
-                        <div>Cedula</div>
+                        <label>{{ customerTypeTwoArray[0]?.documentTypeName }}</label>
                     </div>
 
                     <div class="col">
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="col">
-                        <div>Cauca</div>
+                        <label>{{ customerTypeTwoArray[0]?.departmentName }}</label>
                     </div>
 
                 </div>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="col">
-                        <div>1013679830</div>
+                        <label>{{ customerTypeTwoArray[0]?.document }}</label>
                     </div>
 
                     <div class="col">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="col">
-                        <div>Mariquita</div>
+                        <label>{{ customerTypeTwoArray[0]?.cityName }}</label>
                     </div>
 
                 </div>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="col">
-                        <div>Erika Yessenia Restrepo Sandoval</div>
+                        <div><label>{{ customerTypeTwoArray[0]?.firstName }} {{ customerTypeTwoArray[0]?.secondName }} {{ customerTypeTwoArray[0]?.lastName }} {{ customerTypeTwoArray[0]?.secondLastName }}</label></div>
                     </div>
 
                     <div class="col">
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="col">
-                        <div>call 43 sur # 12- 91</div>
+                        <label>{{ customerTypeTwoArray[0]?.address }}</label>
                     </div>
 
                 </div>
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="col">
-                        <div>erika@gmail.com</div>
+                        <label>{{ customerTypeTwoArray[0]?.email }}</label>
                     </div>
 
                     <div class="col">
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="col">
-                        <div>3222872852</div>
+                        <label>{{ customerTypeTwoArray[0]?.phoneNumber }}</label>
                     </div>
 
                 </div>
@@ -93,9 +93,10 @@
     </p-tabView>
     <p-tabView>
         <p-tabPanel header="Productos">
-            <p-table [tableStyle]="{ 'min-width': '50rem' }">
+            <p-table [paginator]="true" [rows]="10" *ngIf="products" [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template pTemplate="header">
                     <tr>
+                        <th># Factura</th>
                         <th>Tipo de producto</th>
                         <th>Tiempo en mora</th>
                         <th>Fecha inicio mora</th>
@@ -103,17 +104,19 @@
                         <th style="width: 5rem">Opciones</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-customer>
-                    <tr *ngFor="let customerTypeOne of customerTypeOneArray[0]">
-                        <td>{{ customerTypeOne?.documentTypeName }}</td>
-                        <td>{{ customerTypeOne?.document }}</td>
-                        <td>{{ customerTypeOne?.firstName }} {{ customerTypeOne?.secondName }} {{ customerTypeOne?.lastName }} {{ customerTypeOne?.secondLastName }}</td>
-                        <td>{{ customerTypeOne?.statusName }}</td>
-                        <td><p-button label="Pagar"></p-button></td>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{ product.productNumBill }}</td>
+                        <td>{{ product.productTypeName }}</td>
+                        <td>{{ product.daysPastDue }}</td>
+                        <td>{{ product.dateProductPayment }}</td>
+                        <td>{{ product.totalDebt }}</td>
+                        <td><p-button label="Pagar" (click)="openModalPaymentService(product.productNumBill)"></p-button></td>
                       </tr>
                 </ng-template>
             </p-table>
             <button type="button" class="addProduct btn btn-primary">Agregar producto</button>
         </p-tabPanel>
     </p-tabView>
+
 

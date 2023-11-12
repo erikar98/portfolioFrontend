@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { PaymentModule } from '../payment/payment.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,9 @@ import { TableModule } from 'primeng/table';
     CutomerTypeThreeCreateComponent,
     CutomerTypeThreeUpdateComponent
   ],
+  exports:[
+    CutomerTypeTwoListComponent
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -25,7 +30,9 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     FormsModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    PaginatorModule,
+    PaymentModule
   ]
 })
 export class CustomerModule { }

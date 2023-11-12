@@ -1,15 +1,26 @@
-.updatePortfolio{
+.updatePortfolio {
     float: right;
-    margin: 1em;
+    margin: 1rem;
+}
+.createCustomer, .loadCSV {
+
+    margin: 1.5rem;
 }
 .custom-input {
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #016D38;
     outline: none;
     box-shadow: none; /* Elimina el sombreado predeterminado del foco */
+    
 }
 .vertical-line {
     border-left: 1px solid #ccc; /* Puedes ajustar el color de la línea según tus preferencias */
     height: 60px; /* Ajusta la altura de la línea según tus necesidades */
     margin: 0 15px; /* Ajusta el margen para separar la línea de los botones */
+}
+/* Aplica estilos cuando el ratón está sobre las opciones del select */
+
+.searchCustomer{
+    color: #FFDC5D !important;
+    background-color: #016d38 !important;
 }

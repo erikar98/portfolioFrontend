@@ -1,3 +1,47 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.min.css";
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap/scss/bootstrap';
+
+
+.p-button, .btn, .submit{
+    color: #FFDC5D;
+    background: #016D38;
+    border: 1px solid #016D38;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+    color:#016D38;
+    background-color: #FFDC5D;
+}
+.p-button:enabled:hover{
+    color:#016D38;
+    background-color: #FFDC5D;
+}
+
+.p-panelmenu .p-panelmenu-header > a {
+    border: 1px solid #cac8be !important;
+    color: #016d38 !important;
+}
+
+.p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover{
+    color:#016D38;
+    background-color: #FFDC5D;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #ffffff;
+    border-color: #016D38;
+    color: #016D38;
+}
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: inset 0 0 0 0.2rem #FFDC5D;
+}
+
+.btn-edit, .btn-view {
+    width: 20px!important;
+    padding:0.5rem!important;
+    height: 5px!important;
+}
+
+/* Importing Bootstrap SCSS file. */

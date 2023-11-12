@@ -1,42 +1,55 @@
 <div class="container">
-    <button type="button" class="updatePortfolio btn btn-primary">Actualizar estados de cartera</button>
-</div>
-<div class="container">
-    <p-tabView>
-        <p-tabPanel header="Clientes">
-            <div class="tab-content">
-                <div class="row align-items-start">
-                    <form #customerForm="ngForm">
-                        <div class="row form-group">
-                            <div class="col">
-                                <div class="form-floating">
-                                    <select id = "inTypeDocument" name="inTypeDocument"  class="form-select custom-input" aria-label="Default select example" ngModel>
-                                        <option *ngFor="let tipo of typeDocuments" [value]="tipo.documentTypeIdMaster">{{tipo.documentTypeName}}</option>
-                                    </select>
-                                    <label for="selectTypeDocument">Tipo de documento *</label>
+    <div class="row">
+        <div class="col-md-9">
+            <p-tabView>
+                <p-tabPanel header="Clientes">
+                    <div class="tab-content">
+                        <div class="row align-items-start">
+                            <form #customerForm="ngForm" (ngSubmit)="loadCustomerTypeOne(customerForm)">
+                                <div class="row form-group">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <select id="inTypeDocument" name="inTypeDocument"
+                                                class="form-select custom-input" aria-label="tipo de documento"
+                                                [(ngModel)]="selectedTypeDocument" required>
+                                                <option *ngFor="let tipo of typeDocuments"
+                                                    [value]="tipo.documentTypeIdMaster">{{tipo.documentTypeName}}
+                                                </option>
+                                            </select>
+                                            <label for="selectTypeDocument">Tipo de documento *</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input id="inDocument" name="inDocument" class="form-control custom-input"
+                                                aria-label="Floating label" [(ngModel)]="inDocument" required>
+                                            <label for="inputDocument">Digite su número de documento</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <button type="submit" class="searchCustomer btn btn-primary my-2"
+                                            [disabled]="!customerForm.valid">Buscar</button>
+                                    </div>                                    
                                 </div>
-                            </div>
-                            
-                            <div class="col">
-                                <div class="form-floating">
-                                    <input id="inDocument" name="inDocument" class="form-control custom-input " aria-label="Floating label" ngModel>
-                                    <label for="inputDocument">Digite su número de documento</label>
-                                </div>
-                            </div>
-            
-                            <div class="col">
-                                <button type="button" class="searchCustomer btn btn-primary my-2" (click)="loadCustomerTypeOne(customerForm)">Buscar</button>
-                            </div>
-                            <div class="col vertical-line">
-                                <button type="button" class="createCustomer btn btn-primary me-2 my-2">Crear</button>
-                                <button type="button" class="loadCSV btn btn-primary my-2">Cargar CSV</button>
-                            </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+
+        <div class="col-md-3">
+            <div class="vertical-line">
+                <button type="button" class="updatePortfolio btn btn-primary">Actualizar estados de cartera</button>
             </div>
-        </p-tabPanel>
-    </p-tabView>
+            <div class="vertical-line">
+                <button type="button" class="createCustomer btn btn-primary me-2 my-2">Crear</button>
+                <button type="button" class="loadCSV btn btn-primary my-2">Cargar CSV</button>
+            </div>
+        </div>
+    </div>
 
     <p-table *ngIf="customerTypeOneArray" [value]="customerTypeOneArray" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
@@ -45,24 +58,27 @@
                 <th>Número de documento</th>
                 <th>Nombre Completo</th>
                 <th>Estado de cartera</th>
-                <th style="width: 5rem">Opciones</th>
+                <th style="width: 10rem">Opciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
             <tr *ngFor="let customerTypeOne of customerTypeOneArray[0]">
                 <td>{{ customerTypeOne?.documentTypeName }}</td>
                 <td>{{ customerTypeOne?.document }}</td>
-                <td>{{ customerTypeOne?.firstName }} {{ customerTypeOne?.secondName }} {{ customerTypeOne?.lastName }} {{ customerTypeOne?.secondLastName }}</td>
+                <td>{{ customerTypeOne?.firstName }} {{ customerTypeOne?.secondName }} {{ customerTypeOne?.lastName }}
+                    {{ customerTypeOne?.secondLastName }}</td>
                 <td>{{ customerTypeOne?.statusName }}</td>
                 <td>
                     <div class="row">
-                        <div class="col">
-                            <p-button class="btn-edit" icon="pi pi-user-edit"></p-button>
-                            <p-button class="btn-view" icon="pi pi-eye"></p-button>
-                        </div>                        
+                        <div class="col-4 align-self-center">
+                            <p-button class="btn-edit" icon="pi pi-user-edit" styleClass="p-button-sm" (click)="navigateCustomerProducts(customerForm.value.inDocument, customerForm.value.inTypeDocument)"></p-button>
+                        </div>
+                        <div class="col-4 align-self-center">
+                            <p-button class="btn-view" icon="pi pi-eye" styleClass="p-button-sm"></p-button>
+                        </div>
                     </div>
                 </td>
-              </tr>
+            </tr>
         </ng-template>
     </p-table>
 
