@@ -18,6 +18,8 @@ export class CutomerTypeTwoListComponent {
   products: Product[] = [];
   totalRecords: number = 0;
 
+  productToPay: Product;
+
   constructor(
     private sharedDataService:CommunService,
     private serviceCustomer: CustomerService,
@@ -31,6 +33,10 @@ export class CutomerTypeTwoListComponent {
     this.sharedDataService.openModalPayment$.subscribe(datos => {
       this.datos = datos;
       console.log(datos);
+    });
+
+    this.sharedDataService.openModalProduct$.subscribe( () => {
+      console.log('Se abrió la modal de producto');
     });
 
     this.loadCustomerTypeTwo();
@@ -76,8 +82,24 @@ export class CutomerTypeTwoListComponent {
 
   }
 
-  openModalPaymentService(productNumBill: number) {
-    this.sharedDataService.openModalPayment(productNumBill);
+  openModalPaymentService(productNumBill: number,productTypeName: string,daysPastDue: number,dateProductPayment:string,totalDebt :number) {
+    this.productToPay = this.productToPay || new Product;
+
+    this.productToPay.productNumBill = productNumBill;
+    this.productToPay.productTypeName = productTypeName;
+    this.productToPay.daysPastDue = daysPastDue;
+    this.productToPay.dateProductPayment = dateProductPayment;
+    this.productToPay.totalDebt = totalDebt;
+
+    console.log("Se esta enviando a la modal el objeto: " + this.productToPay)
+
+    this.sharedDataService.openModalPayment(this.productToPay);
+
+
+  }
+
+  openModalProductService() {
+    this.sharedDataService.openModalProduct();
   }
   
 

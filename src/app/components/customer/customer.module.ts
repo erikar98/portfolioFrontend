@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { PaymentModule } from '../payment/payment.module';
+import { ProductModule } from '../product/product.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PaymentModule } from '../payment/payment.module';
     DropdownModule,
     TableModule,
     PaginatorModule,
-    PaymentModule
+    PaymentModule,
+    ProductModule
   ]
 })
 export class CustomerModule { }

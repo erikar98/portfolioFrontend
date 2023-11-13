@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -11,9 +12,15 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     ProductListComponent,
     ProductCreateComponent
   ],
+  exports:[
+    ProductListComponent,
+    ProductCreateComponent
+  ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DialogModule,
+    ButtonModule
   ]
 })
 export class ProductModule { }

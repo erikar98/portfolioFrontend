@@ -111,12 +111,13 @@
                         <td>{{ product.daysPastDue }}</td>
                         <td>{{ product.dateProductPayment }}</td>
                         <td>{{ product.totalDebt }}</td>
-                        <td><p-button label="Pagar" (click)="openModalPaymentService(product.productNumBill)"></p-button></td>
+                        <td><p-button label="Pagar" (click)="openModalPaymentService(product.productNumBill,product.productTypeName,product.daysPastDue,product.dateProductPayment,product.totalDebt )"></p-button></td>
                       </tr>
                 </ng-template>
             </p-table>
-            <button type="button" class="addProduct btn btn-primary">Agregar producto</button>
+            <button type="button" class="addProduct btn btn-primary" (click)="openModalProductService()">Agregar producto</button>
         </p-tabPanel>
     </p-tabView>
 
-
+<app-payment-create></app-payment-create>
+<app-product-create></app-product-create>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Product } from 'src/app/models/product/product';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +21,21 @@ export class CommunService {
     this.router.navigate(['/customer-view']);
   }
 
-  // elements for open modal
-  private openModalPaymentSubject = new Subject<number>();
+  // elements for open modal payment
+  private openModalPaymentSubject = new Subject<Product>();
 
   openModalPayment$ = this.openModalPaymentSubject.asObservable();
 
-  openModalPayment(productNumBill:number) {
-    this.openModalPaymentSubject.next(productNumBill);
+  openModalPayment(product: Product ) {
+    this.openModalPaymentSubject.next(product);
+  }
+
+  // elements for open modal add product
+  private openModalProductSubject = new Subject<void>();
+
+  openModalProduct$ = this.openModalProductSubject.asObservable();
+
+  openModalProduct() {
+    this.openModalProductSubject.next();
   }
 }
