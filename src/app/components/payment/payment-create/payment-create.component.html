@@ -47,6 +47,6 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="createPayment(productToPay.productNumBill, productToPay.totalDebt)" label="Realizar pago" styleClass="p-button-text"></p-button>
+        <button type="button" class="addProduct btn btn-primary" (click)="createPayment(productToPay.productNumBill, productToPay.totalDebt)">Realizar pago</button>
     </ng-template>
 </p-dialog>

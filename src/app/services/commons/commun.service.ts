@@ -21,6 +21,16 @@ export class CommunService {
     this.router.navigate(['/customer-view']);
   }
 
+  // elements for send data customer-search to customer-edit
+
+  private datosSubjectEdit = new BehaviorSubject<any>(null);
+  datosEdit$: Observable<any> = this.datosSubjectEdit.asObservable();
+
+  sendDataEdit(nuevosDatos: any): void {
+    this.datosSubjectEdit.next(nuevosDatos);
+    this.router.navigate(['/customer-edit']);
+  }
+
   // elements for open modal payment
   private openModalPaymentSubject = new Subject<Product>();
 
@@ -31,11 +41,11 @@ export class CommunService {
   }
 
   // elements for open modal add product
-  private openModalProductSubject = new Subject<void>();
+  private openModalProductSubject = new Subject<string>();
 
   openModalProduct$ = this.openModalProductSubject.asObservable();
 
-  openModalProduct() {
-    this.openModalProductSubject.next();
+  openModalProduct(document: string) {
+    this.openModalProductSubject.next(document);
   }
 }

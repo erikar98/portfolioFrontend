@@ -24,7 +24,9 @@ export class CutomerTypeTwoListComponent {
     private sharedDataService:CommunService,
     private serviceCustomer: CustomerService,
     private serviceProduct: ProductService){
+    }
 
+  ngOnInit(){
     this.sharedDataService.datos$.subscribe(datos => {
       this.datos = datos;
       console.log(datos);
@@ -42,7 +44,6 @@ export class CutomerTypeTwoListComponent {
     this.loadCustomerTypeTwo();
 
     this.loadProductsByCustomer();
-
   }
 
   loadCustomerTypeTwo() {
@@ -98,8 +99,8 @@ export class CutomerTypeTwoListComponent {
 
   }
 
-  openModalProductService() {
-    this.sharedDataService.openModalProduct();
+  openModalProductService(document: string) {
+    this.sharedDataService.openModalProduct(document);
   }
   
 

@@ -2,7 +2,7 @@ export class TypeProduct {
 
     productTypeId: number;
 
-    roductTypeIdMaster: number;
+    productTypeIdMaster: number;
 
     productTypeName: string;
 }

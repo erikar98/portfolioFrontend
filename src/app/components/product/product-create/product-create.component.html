@@ -1,52 +1,67 @@
 
-  <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+  <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '70vw', height: '40vw' }">
     <ng-template pTemplate="header">
         <span class="text-xl font-bold">Datos del producto</span>
     </ng-template>
     <div class="tab-content">
-        <div class="row">
+        <form #productForm="ngForm">
+            <div class="row form-group">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <select id="inTypeProduct" name="inTypeProduct"
+                                class="form-select custom-input" aria-label="tipo de producto"
+                                [(ngModel)]="selectedTypeProducts" required>
+                                <option *ngFor="let tipo of typeProducts"
+                                    [value]="tipo.productTypeIdMaster">{{tipo.productTypeName}}
+                                </option>
+                            </select>
+                            <label for="inTypeProduct">Tipo de producto *</label>
+                        </div>
+                    </div>
+        
+                    <div class="col">
+                        <div class="form-floating">
+                            <input id="inDaysPastDue" name="inDaysPastDue" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inDaysPastDue" required>
+                            <label for="inDaysPastDue">Digite la cantidad de dias en mora</label>
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="row">
+        
+                    <div class="col">
+                        <div class="form-floating">
+                            <input id="inTotalDebt" name="inTotalDebt" class="form-control custom-input"
+                                aria-label="valor a pagar" [(ngModel)]="inTotalDebt" required>
+                            <label for="inTotalDebt">Digite el valor del servicio</label>
+                        </div>
+                    </div>
+        
+                    <div class="col">
+                        <p-calendar [(ngModel)]="date" class="custom-calendar" (onSelect)="getDateSelected()"></p-calendar>
+                    </div>
+        
+                </div>
+                <div class="row">
+        
+                    <div class="col">
+                        <div class="form-floating">
+                            <input id="inNumBill" name="inNumBill" class="form-control custom-input"
+                                aria-label="valor a pagar" [(ngModel)]="inNumBill" required>
+                            <label for="inNumBill">Digite el número de la factura</label>
+                        </div>
+                    </div>
+        
+                </div>
 
-            <div class="col">
-                <label for="Tipo de producto">Tipo de producto:</label>
             </div>
-
-            <div class="col">
-                <div>Aseo</div>
-            </div>
-
-            <div class="col">
-                <label for="Tiempo de mora:">Tiempo de mora:</label>
-                <div></div>
-            </div>
-
-            <div class="col">
-                <div>180 dias</div>
-            </div>
-
-        </div>
-        <div class="row">
-
-            <div class="col">
-                <label for="Valor total:">Valor total:</label>
-                <div></div>
-            </div>
-
-            <div class="col">
-                <div>$ 250.000,98</div>
-            </div>
-
-            <div class="col">
-                <label for="echa de inicio de mora:">Fecha de inicio de mora:</label>
-                <div></div>
-            </div>
-
-            <div class="col">
-                <div>2023-04-01</div>
-            </div>
-
-        </div>
+        </form>
+        
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="createPayment(productToPay.productNumBill, productToPay.totalDebt)" label="Agregar nuevo producto" styleClass="p-button-text"></p-button>
+        
+        <button type="submit" class="searchCustomer btn btn-primary my-2" [disabled]="!productForm.valid" (click)="createProduct(productForm)">Agregar nuevo producto</button>
     </ng-template>
 </p-dialog>

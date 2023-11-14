@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { ProductResponse } from 'src/app/models/product/dao/product-response';
+import { ProductCreate } from 'src/app/models/product/dao/product';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,12 @@ export class ProductService {
   }
 
   // this method send data for page view customer-view/list-products/new-product to backend
-  public createProduct(product: Product): Observable<Product> {
+  public createProduct(product: ProductCreate): Observable<Product> {
 
     return this.http.post(`${this.baseEndPoint}/new_product_customer`, product, { headers: this.head })
       .pipe(
         map(product => {
+
           return product as Product;
         })
       );

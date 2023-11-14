@@ -4,7 +4,6 @@ import { TypeDocument } from 'src/app/models/typeDocument/type-document';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { TypeDocumentService } from 'src/app/services/typeDocument/type-document.service';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CommunService } from 'src/app/services/commons/commun.service';
 
 @Component({
@@ -25,7 +24,6 @@ export class CutomerTypeOneListComponent{
   constructor(
     private serviceCustomer: CustomerService,
     private serviceTypeDocument: TypeDocumentService,
-    private router: Router,
     private sharedDataService: CommunService){
 
     
@@ -77,6 +75,12 @@ export class CutomerTypeOneListComponent{
     const datos = { document, typeDocument };
     this.sharedDataService.sendData(datos);
     //this.router.navigate(['/customer-view', navigationExtras]);
+  }
+
+  navigateCustomerEdit(document: string, typeDocument: number): void {
+    const datos = { document, typeDocument };
+    this.sharedDataService.sendDataEdit(datos);
+    //this.router.navigate(['/customer-edit', navigationExtras]);
   }
 
 }
