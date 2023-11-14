@@ -31,6 +31,16 @@ export class CommunService {
     this.router.navigate(['/customer-edit']);
   }
 
+  // elements for send data customer-search to customer-edit
+
+  private datosSubjectCreate = new BehaviorSubject<void>(null);
+  datosCreate$: Observable<any> = this.datosSubjectCreate.asObservable();
+
+  sendDataCreate(): void {
+    this.datosSubjectCreate.next();
+    this.router.navigate(['/customer-create']);
+  }
+
   // elements for open modal payment
   private openModalPaymentSubject = new Subject<Product>();
 

@@ -159,7 +159,7 @@ export class CutomerTypeThreeUpdateComponent {
         departmentIdDane: formData.inDepartment,
         cityIdDane: formData.inCity,
         email: formData.inEmail,
-        phoneNumber: formData.inPhoneNumber,
+        phoneNumber: formData.inPhoneNumber
       };
       this.serviceCustomer.updateCustomer(customerToUpdate).subscribe((customer) => {
         this.customerTypeThreeArray = [customer];

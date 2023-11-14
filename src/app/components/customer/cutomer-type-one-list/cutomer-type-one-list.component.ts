@@ -83,4 +83,9 @@ export class CutomerTypeOneListComponent{
     //this.router.navigate(['/customer-edit', navigationExtras]);
   }
 
+  navigateCreateCustomer(): void {
+    this.sharedDataService.sendDataCreate();
+    //this.router.navigate(['/customer-edit', navigationExtras]);
+  }
+
 }

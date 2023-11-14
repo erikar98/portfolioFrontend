@@ -56,7 +56,7 @@ export class CustomerService {
   }
 
   // this method send data for page view customer-create to backend
-  public createCustomer(customer: CustomerTypeThree): Observable<CustomerTypeThree> {
+  public createCustomer(customer: CustomerTypeThreeUpdate): Observable<CustomerTypeThree> {
 
     return this.http.post(`${this.baseEndPoint}/new_customer`, customer, { headers: this.head })
       .pipe(

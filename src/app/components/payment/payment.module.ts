@@ -5,7 +5,10 @@ import { PaymentCreateComponent } from './payment-create/payment-create.componen
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-
+import { TabViewModule } from 'primeng/tabview';
+import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [
     PaymentListComponent,
@@ -18,7 +21,11 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     AppRoutingModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    TabViewModule,
+    FormsModule,
+    TableModule,
+    PaginatorModule
   ]
 })
 export class PaymentModule { }

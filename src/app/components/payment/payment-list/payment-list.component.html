@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p-tabView>
+                <p-tabPanel header="Historial de pagos">
+                    <div class="tab-content">
+                        <div class="row align-items-start">
+                            <form #customerForm="ngForm" (ngSubmit)="loadPaymentHistorial(customerForm)">
+                                <div class="row form-group">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <select id="inTypeDocument" name="inTypeDocument"
+                                                class="form-select custom-input" aria-label="tipo de documento"
+                                                [(ngModel)]="selectedTypeDocument" required>
+                                                <option *ngFor="let tipo of typeDocuments"
+                                                    [value]="tipo.documentTypeIdMaster">{{tipo.documentTypeName}}
+                                                </option>
+                                            </select>
+                                            <label for="selectTypeDocument">Tipo de documento *</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input id="inDocument" name="inDocument" class="form-control custom-input"
+                                                aria-label="Floating label" [(ngModel)]="inDocument" required>
+                                            <label for="inputDocument">Digite su número de documento</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <button type="submit" class="searchCustomer btn btn-primary my-2"
+                                            [disabled]="!customerForm.valid">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </div>
+
+
+            <p-table [paginator]="true" [rows]="10" *ngIf="payments" [value]="payments"
+                [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Tipo de servicio</th>
+                        <th>Número de factura</th>
+                        <th>Valor del pago</th>
+                        <th>Fecha del pago</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-payment>
+                    <tr>
+                        <td>{{ payment?.productTypeName }}</td>
+                        <td>{{ payment?.productNumBill }}</td>
+                        <td>{{ payment?.totalPayment }} </td>
+                        <td>{{ payment?.datePayment }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+</div>
