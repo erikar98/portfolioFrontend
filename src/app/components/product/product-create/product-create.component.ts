@@ -79,7 +79,7 @@ export class ProductCreateComponent {
         dateProductPayment: this.dateString,
         daysPastDue: formData.inDaysPastDue,
         customerId: this.documentClient, 
-        statusIdMaster: 1 
+        statusIdMaster: 3 
       };
       this.serviceProduct.createProduct(productToCreate)
       .subscribe(
