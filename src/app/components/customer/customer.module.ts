@@ -14,6 +14,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { PaymentModule } from '../payment/payment.module';
 import { ProductModule } from '../product/product.module';
 
+
 @NgModule({
   declarations: [
     CutomerTypeOneListComponent,

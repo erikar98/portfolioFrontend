@@ -1,132 +1,159 @@
 <p-tabView>
     <p-tabPanel header="Cliente">
         <div class="tab-content">
-            <div class="row">
+            <form #customerForm="ngForm">
+                <div class="row form-group" *ngIf="customerTypeThreeArray.length > 0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="inTypeDocument" name="inTypeDocument" class="form-select custom-input"
+                                    aria-label="tipo de producto" [(ngModel)]="selectedTypeDocument" [readonly]="true" >
+                                    <option *ngFor="let tipo of typeDocument" [value]="tipo.documentTypeIdMaster">
+                                        {{tipo.documentTypeName}}
+                                    </option>
+                                </select>
+                                <label for="inTypeDocument">Tipo de documento: *</label>
+                            </div>
+                        </div>
 
-                <div class="col">
-                    <label for="Tipo documento:">Tipo de documento:</label>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="inDepartment" name="inDepartment" class="form-select custom-input"
+                                    aria-label="tipo de producto" [(ngModel)]="selectedDepartment" (change)="loadCity($event.target.value)" required>
+                                    <option *ngFor="let tipo of department" [value]="tipo.departmentIdDane">
+                                        {{tipo.departmentName}}
+                                    </option>
+                                </select>
+                                <label for="inDepartment">Departamento: *</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inDocument" name="inDocument" class="form-control custom-input"
+                                    aria-label="Floating label" [(ngModel)]="inDocument" [readonly]="true">
+                                <label for="inputDocument">Digite su número de documento</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <select id="inCity" name="inCity" class="form-select custom-input"
+                                    aria-label="tipo de producto" [(ngModel)]="selectedCity" required>
+                                    <option *ngFor="let tipo of city" [value]="tipo.cityIdDane">
+                                        {{tipo.cityName}}
+                                    </option>
+                                </select>
+                                <label for="inCity">Ciudad</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inFirstName" name="inFirstName" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inFirstName" required>
+                                <label for="inFirstName">Primer nombre:</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inAddress" name="inAddress" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inAddress" required>
+                                <label for="inAddress">Direccion:</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inSecondName" name="inSecondName" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inSecondName" required>
+                                <label for="inSecondName">Segundo nombre:</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inPhoneNumber" name="inPhoneNumber" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inPhoneNumber" required>
+                                <label for="inPhoneNumber">Número de contacto:</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inLastName" name="inLastName" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inLastName" required>
+                                <label for="inLastName">Primer apellido</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inEmail" name="inEmail" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inEmail" required>
+                                <label for="inEmail">Correo electrónico:</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="inSecondLastName" name="inSecondLastName" class="form-control custom-input"
+                                aria-label="dias de mora" [(ngModel)]="inSecondLastName" required>
+                                <label for="inSecondLastName">Segundo apellido</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+
+                        <div class="col">
+                            <div class="form-floating">
+                                <button type="button" class="updateCustomer btn btn-primary" (click)="updateDataCustomer(customerForm)">Actualizar datos</button>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="col">
-                    <input placeholder="Tipo de documento"/>
-                </div>
-
-                <div class="col">
-                    <label for="Departamento:">Departamento:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Departamento"/>
-                </div>
-
-            </div>
-            <div class="row">
-
-                <div class="col">
-                    <label for="Numero de documento:">Numero de documento:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Numero de documento"/>
-                </div>
-
-                <div class="col">
-                    <label for="Ciudad:">Ciudad:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Ciudad"/>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-                    <label for="Primer nombre:">Primer nombre:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Primer nombre"/>
-                </div>
-
-                <div class="col">
-                    <label for="Direccion:">Direccion:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Direccion"/>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-                    <label for="Segundo nombre:">Segundo nombre:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Segundo nombre"/>
-                </div>
-
-                <div class="col">
-                    <label for="Número de contacto:">Número de contacto:</label>
-                    <div></div>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Número de contacto"/>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-                    <label for="Primer apellido:">Primer apellido</label>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Primer apellido"/>
-                </div>
-
-                <div class="col">
-                    <label for="Correo electrónico:">Correo electrónico:</label>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Correo electrónico"/>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-                    <label for="Segundo apellido:">Segundo apellido</label>
-                </div>
-
-                <div class="col">
-                    <input placeholder="Segundo apellido"/>
-                </div>
-
-                <div class="col">
-                    
-                </div>
-
-                <div class="col">
-                    <button type="button" class="updateCustomer btn btn-primary">Actualizar datos</button>
-                </div>
-                
-
-            </div>
+            </form>
 
         </div>
     </p-tabPanel>

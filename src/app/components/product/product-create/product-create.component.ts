@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product/product';
 import { TypeProduct } from 'src/app/models/typeProduct/type-product';

@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { CustomerTypeTwo } from '../../models/customer/customer-type-two';
 import { CustomerTypeThree } from '../../models/customer/customer-type-three';
 import { environment } from 'src/environments/environment.development';
+import { CustomerTypeThreeUpdate } from 'src/app/models/customer/dao/customer-type-three';
 
 @Injectable({
   providedIn: 'root'
@@ -67,9 +68,9 @@ export class CustomerService {
   }
 
   // this method send data for page view customer-update to backend
-  public updateCustomer(customer: CustomerTypeThree): Observable<CustomerTypeThree> {
+  public updateCustomer(customer: CustomerTypeThreeUpdate): Observable<CustomerTypeThree> {
 
-    return this.http.put(`${this.baseEndPoint}/c3/${customer.customerId}`, customer, { headers: this.head })
+    return this.http.put(`${this.baseEndPoint}/c3/${customer.document}?typeDocument=${customer.documentTypeIdMaster}`, customer, { headers: this.head })
       .pipe(
         map(customerTypeThree => {
           return customerTypeThree as CustomerTypeThree;
