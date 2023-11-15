@@ -6,6 +6,7 @@ import { TypeDocumentService } from 'src/app/services/typeDocument/type-document
 import { NgForm } from '@angular/forms';
 import { CommunService } from 'src/app/services/commons/commun.service';
 import { PunihsmentService } from 'src/app/services/punishment/punihsment.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cutomer-type-one-list',
@@ -97,6 +98,22 @@ export class CutomerTypeOneListComponent{
   navigateCreateCustomer(): void {
     this.sharedDataService.sendDataCreate();
     //this.router.navigate(['/customer-edit', navigationExtras]);
+  }
+
+  showModalSwalSucces(){
+    Swal.fire({
+      title: 'Muy bien!!',
+      text: 'Pago registrado con éxito',
+      icon: 'success'
+    });
+  }
+
+  showModalSwalError(){
+    Swal.fire({
+      title: 'Ups!!',
+      text: 'El cliente no existe',
+      icon: 'warning'
+    });
   }
 
 }

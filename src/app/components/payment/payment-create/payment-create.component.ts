@@ -3,6 +3,7 @@ import { Payment } from 'src/app/models/payment/payment';
 import { Product } from 'src/app/models/product/product';
 import { CommunService } from 'src/app/services/commons/commun.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment-create',
@@ -46,6 +47,23 @@ export class PaymentCreateComponent {
 
     this.servicePayment.createPayment(this.paymentToDo).subscribe((payment) => {
       this.closeModalPayment(payment);
+      this.showModalSwalSucces();
+    });
+  }
+
+  showModalSwalSucces(){
+    Swal.fire({
+      title: 'Muy bien!!',
+      text: 'Pago registrado con éxito',
+      icon: 'success'
+    });
+  }
+
+  showModalSwalError(){
+    Swal.fire({
+      title: 'Ups!!',
+      text: 'El registro no pudo ser creado',
+      icon: 'error'
     });
   }
 
