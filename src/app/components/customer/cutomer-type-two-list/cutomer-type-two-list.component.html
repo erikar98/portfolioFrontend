@@ -100,6 +100,7 @@
                         <th>Tipo de producto</th>
                         <th>Tiempo en mora</th>
                         <th>Fecha inicio mora</th>
+                        <th>Estado</th>
                         <th>Valor total</th>
                         <th style="width: 5rem">Opciones</th>
                     </tr>
@@ -109,7 +110,8 @@
                         <td>{{ product.productNumBill }}</td>
                         <td>{{ product.productTypeName }}</td>
                         <td>{{ product.daysPastDue }}</td>
-                        <td>{{ product.dateProductPayment }}</td>
+                        <td>{{ product.dateProductPayment | date:'yyyy-MM-dd'}}</td>
+                        <td>{{ product.statusName }}</td>
                         <td>{{ product.totalDebt }}</td>
                         <td><p-button label="Pagar" (click)="openModalPaymentService(product.productNumBill,product.productTypeName,product.daysPastDue,product.dateProductPayment,product.totalDebt )"></p-button></td>
                       </tr>

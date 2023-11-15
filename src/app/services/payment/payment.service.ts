@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Payment } from '../../models/payment/payment';
 import { environment } from 'src/environments/environment.development';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { map } from 'rxjs';
 import { PaymentHistorialResponse } from 'src/app/models/payment/dao/payment-historial-response';
 
@@ -30,9 +30,13 @@ export class PaymentService {
       .pipe(
         map(payments => {
           return payments as any;
+        }),
+        catchError(error =>{
+          console.error("Error en la solicitud de obtener departamentos", error);
+          return throwError(error);
+  
         })
       );
-
   }
 
   

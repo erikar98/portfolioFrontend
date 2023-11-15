@@ -41,6 +41,15 @@ export class CommunService {
     this.router.navigate(['/customer-create']);
   }
 
+  // element for table products reload
+  private modalCloseSource = new Subject<string>();
+
+  modalClosed$ = this.modalCloseSource.asObservable();
+
+  nofitfyModalClose(document: string) {
+    this.modalCloseSource.next(document);
+  }
+
   // elements for open modal payment
   private openModalPaymentSubject = new Subject<Product>();
 

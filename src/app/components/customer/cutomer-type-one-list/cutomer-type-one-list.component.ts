@@ -5,6 +5,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 import { TypeDocumentService } from 'src/app/services/typeDocument/type-document.service';
 import { NgForm } from '@angular/forms';
 import { CommunService } from 'src/app/services/commons/commun.service';
+import { PunihsmentService } from 'src/app/services/punishment/punihsment.service';
 
 @Component({
   selector: 'app-cutomer-type-one-list',
@@ -13,6 +14,7 @@ import { CommunService } from 'src/app/services/commons/commun.service';
 })
 export class CutomerTypeOneListComponent{
 
+  result: number;
   typeDocuments: TypeDocument[];
   selectedTypeDocument: TypeDocument;
 
@@ -24,7 +26,8 @@ export class CutomerTypeOneListComponent{
   constructor(
     private serviceCustomer: CustomerService,
     private serviceTypeDocument: TypeDocumentService,
-    private sharedDataService: CommunService){
+    private sharedDataService: CommunService,
+    private sahredPunishmentService: PunihsmentService){
 
     
   }
@@ -68,6 +71,14 @@ export class CutomerTypeOneListComponent{
     }else{
       console.log("no entro al if");
     }
+    
+  }
+
+  updatePortfolioData(){
+    this.sahredPunishmentService.updatePorfolio().subscribe((result) => {
+      this.result = result;
+      console.log("Respuesta proceso masivo" + result);
+    });
     
   }
 

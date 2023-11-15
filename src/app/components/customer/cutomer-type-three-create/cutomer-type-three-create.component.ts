@@ -10,6 +10,7 @@ import { CommunService } from 'src/app/services/commons/commun.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { TypeDocumentService } from 'src/app/services/typeDocument/type-document.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cutomer-type-three-create',
@@ -123,11 +124,28 @@ export class CutomerTypeThreeCreateComponent {
         (customerNew) => {
           this.customer = customerNew;
           console.log('Customer Type One:', this.customer);
+          this.showModalSwalSucces();
         }
       );
 
     }else{
       console.log("no entro al if");
     }
+  }
+
+  showModalSwalSucces(){
+    Swal.fire({
+      title: 'Muy bien!!',
+      text: 'Registro creado con éxito',
+      icon: 'success'
+    });
+  }
+
+  showModalSwalError(){
+    Swal.fire({
+      title: 'Ups!!',
+      text: 'El registro no pudo ser creado',
+      icon: 'error'
+    });
   }
 }

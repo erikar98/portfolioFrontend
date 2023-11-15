@@ -41,6 +41,18 @@ export class CutomerTypeTwoListComponent {
       console.log('Se abrió la modal de producto');
     });
 
+    this.sharedDataService.modalClosed$.subscribe(datos => {
+      this.datos = datos;
+      console.log("recargando productos " + this.datos);
+      //this.datos.document = this.datos;
+      this.serviceProduct.getProductByCustomerId(this.datos,'0','10')
+      .subscribe((product: ProductResponse) => {
+        this.products = product.content;
+        this.totalRecords = product.totalElements;
+        console.log(this.products);
+      });
+    });
+
     this.loadCustomerTypeTwo();
 
     this.loadProductsByCustomer();
@@ -72,7 +84,7 @@ export class CutomerTypeTwoListComponent {
   }
 
   loadProductsByCustomer(){
-
+  
     this.serviceProduct.getProductByCustomerId(this.datos.document,'0','10')
     .subscribe((product: ProductResponse) => {
       this.products = product.content;
@@ -103,5 +115,6 @@ export class CutomerTypeTwoListComponent {
     this.sharedDataService.openModalProduct(document);
   }
   
+
 
 }

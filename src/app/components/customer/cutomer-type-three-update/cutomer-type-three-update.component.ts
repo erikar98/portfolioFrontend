@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {  NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { City } from 'src/app/models/city/city';
 import { CustomerTypeThree } from 'src/app/models/customer/customer-type-three';
 import { CustomerTypeThreeUpdate } from 'src/app/models/customer/dao/customer-type-three';
@@ -10,6 +11,7 @@ import { CommunService } from 'src/app/services/commons/commun.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { TypeDocumentService } from 'src/app/services/typeDocument/type-document.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cutomer-type-three-update',
@@ -48,7 +50,8 @@ export class CutomerTypeThreeUpdateComponent {
     private serviceDepartment: DepartmentService,
     private serviceCity: CityService,
     private sharedDataService: CommunService,
-    private serviceCustomer: CustomerService){
+    private serviceCustomer: CustomerService,
+    private router: Router){
   }
 
   ngOnInit(){
@@ -161,10 +164,19 @@ export class CutomerTypeThreeUpdateComponent {
         email: formData.inEmail,
         phoneNumber: formData.inPhoneNumber
       };
-      this.serviceCustomer.updateCustomer(customerToUpdate).subscribe((customer) => {
-        this.customerTypeThreeArray = [customer];
-        console.log(customer);
-      });
+      this.serviceCustomer.updateCustomer(customerToUpdate)
+      .subscribe({
+        next: (customer) => {
+          this.customerTypeThreeArray = [customer];
+          console.log(customer);
+          this.showModalSwalSucces();
+        },
+        error: (error: any) => {
+          this.showModalSwalError();
+
+        }
+      }        
+      );
 
     }else{
       console.log("no entro al if");
@@ -172,4 +184,29 @@ export class CutomerTypeThreeUpdateComponent {
 
     
   }
+
+  showModalSwalSucces(){
+    Swal.fire({
+      title: 'Muy bien!!',
+      text: 'Registro actualizado con éxito',
+      icon: 'success',
+      confirmButtonColor: '#016D38',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/customer-search']);
+      }
+    });
+  }
+
+  showModalSwalError(){
+    Swal.fire({
+      title: 'Ups!!',
+      text: 'El registro no pudo ser actualizado con exito',
+      icon: 'error',
+      confirmButtonColor: '#016D38',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
 }

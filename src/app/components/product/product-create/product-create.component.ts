@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { TypeProductService } from 'src/app/services/typeProduct/type-product.service';
 import { DatePipe } from '@angular/common';
 import { ProductCreate } from 'src/app/models/product/dao/product';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-create',
@@ -32,7 +33,8 @@ export class ProductCreateComponent {
   constructor(private sharedDataService:CommunService,
     private serviceProduct: ProductService,
     private serviceTypeProducts: TypeProductService,
-    private datePipe: DatePipe){
+    private datePipe: DatePipe,
+    private sharedCommunService: CommunService){
 
   }
 
@@ -86,6 +88,7 @@ export class ProductCreateComponent {
         (product) => {
           this.product = product;
           console.log('Customer Type One:', this.product);
+          this.sharedCommunService.nofitfyModalClose(this.documentClient);
           this.closeModalPayment(product);
         }
       );
@@ -108,7 +111,27 @@ export class ProductCreateComponent {
 
   getDateSelected() {
     console.log('Fecha seleccionada:', this.date);
-    // Puedes hacer más cosas con la fecha seleccionada si es necesario
-}
+  }
+
+
+  showModalSwalSucces(){
+    Swal.fire({
+      title: 'Muy bien!!',
+      text: 'Producto creado con éxito',
+      icon: 'success',
+      confirmButtonColor: '#016D38',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  showModalSwalError(){
+    Swal.fire({
+      title: 'Ups!!',
+      text: 'El producto no pudo ser agregado con exito',
+      icon: 'error',
+      confirmButtonColor: '#016D38',
+      confirmButtonText: 'Aceptar'
+    });
+  }
 
 }
